@@ -5,32 +5,36 @@ public class Main {
         Person hermione = new Person("Hermione Granger");
         Person snape = new Person("Severus Snape");
         Person draco = new Person("Draco Malfoy");
-        Person remus = new Person("Remus John Lupin");
+        Person voldemort = new Person("Voldemort");
+        Person albus = new Person("Albus Dumbledore");
+        Person luna = new Person("Luna Lovegood");
+        Person hagrid = new Person("Rubeus Hagrid");
+        Person sirius = new Person("Sirius Black");
+        Person bella = new Person("Bellatrix Lestrange");
 
         DynamicArray darr = new DynamicArray();
 
-        darr.add(harry);
-        darr.add(ron);
         darr.add(hermione);
         darr.add(snape);
         darr.add(draco);
-        darr.add(remus);
-        darr.get(30);
-        darr.add(draco);
-        darr.get(31);
-        darr.remove(1);
-        
-        System.out.println("Array indeholder " + darr.size() + " elementer");
+        darr.add(voldemort);
+        darr.add(albus);
+        darr.add(luna);
+        darr.add(hagrid);
+        darr.add(sirius);
+        darr.add(bella);
+        System.out.println("Elementer: " + darr.size() + ", Kapacitet: " + darr.getCapacity());
+
+        darr.add(harry);
+        darr.add(ron);
+        System.out.println("Elementer: " + darr.size() + ", Kapacitet: " + darr.getCapacity());
+
+        darr.remove();
+        darr.remove(4);
+        System.out.println("Elementer: " + darr.size() + ", Kapacitet: " + darr.getCapacity());
+        darr.get(6);
+
         darr.clear();
-
-        int numberOfElementsToAdd = 25;
-
-        for (int i = 0; i < numberOfElementsToAdd; i++) {
-            darr.add(new Person("Person " + i));
-            System.out.println("Tilføjet: Person " + i);
-        }
-
-
-        System.out.println("Array indeholder " + darr.size() + " elementer");
+        System.out.println("Elementer: " + darr.size() + ", Kapacitet: " + darr.getCapacity());
     }
 }

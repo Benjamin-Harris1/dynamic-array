@@ -3,9 +3,10 @@ public class DynamicArray{
     private Person[] array;
     private int size;
     private int growSize;
+    private int INITIAL_SIZE = 10;
 
     public DynamicArray(){
-        array = new Person[10];
+        array = new Person[INITIAL_SIZE];
         size = 0;
         growSize = 10;
     }
@@ -16,11 +17,21 @@ public class DynamicArray{
         }
         array[size] = object;
         size++;
-        //printArray();
+    }
+
+    public int getCapacity(){
+        return array.length;
     }
     
     public int size(){
         return size;
+    }
+
+    public void remove(){
+        size--;
+        if(canShrink()){
+            shrink();
+        }
     }
 
     public void remove(int index){
@@ -29,8 +40,7 @@ public class DynamicArray{
                 array[i] = array[i + 1];
             }
             array[size - 1] = null;
-            size--;
-            printArray();
+            remove();
         } else {
             System.out.println("Ugyldigt indeks: " + index);
         }
@@ -38,7 +48,9 @@ public class DynamicArray{
 
     public void clear(){
         size = 0;
-        array = new Person[10];
+        while (canShrink()) {
+            shrink();
+        }
     }
 
     public Person get(int index){
@@ -68,10 +80,18 @@ public class DynamicArray{
         array = newArray;
     }
 
-    public void printArray(){
-        System.out.println("Array indhold:");
-        for (int i = 0; i < size; i++){
-            System.out.println(array[i]);
-        }
+    public boolean canShrink(){
+        return array.length > size && (array.length - size) > growSize && (array.length - growSize) >= INITIAL_SIZE;
     }
+
+    public void shrink(){
+        int newSize = array.length - growSize;
+        Person[] newArray = new Person[newSize];
+
+        for (int i = 0; i < newSize; i++) {
+            newArray[i] = array[i];
+        }
+        array = newArray;
+    }
+
 }
