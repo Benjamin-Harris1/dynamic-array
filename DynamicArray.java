@@ -2,17 +2,22 @@ public class DynamicArray{
 
     private Person[] array;
     private int size;
+    private int growSize;
 
     public DynamicArray(){
         array = new Person[10];
         size = 0;
+        growSize = 10;
     }
     
     public void add(Person object){
+        if (size == array.length) {
+            grow();
+        }
         array[size] = object;
         size++;
-        printArray();
-        }
+        //printArray();
+    }
     
     public int size(){
         return size;
@@ -52,6 +57,15 @@ public class DynamicArray{
         } else {
             System.out.println("Ugyldigt indeks: " + index);
         }
+    }
+
+    private void grow(){
+        Person[] newArray = new Person[array.length + growSize];
+
+        for (int i = 0; i < array.length; i++){
+            newArray[i] = array[i];
+        }
+        array = newArray;
     }
 
     public void printArray(){
