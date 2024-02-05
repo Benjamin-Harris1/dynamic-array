@@ -1,17 +1,17 @@
-public class DynamicArray{
+public class DynamicArray<T>{
 
-    private Person[] array;
+    private T[] array;
     private int size;
     private int growSize;
     private int INITIAL_SIZE = 10;
 
     public DynamicArray(){
-        array = new Person[INITIAL_SIZE];
+        array = (T[])new Object[INITIAL_SIZE];
         size = 0;
         growSize = 10;
     }
     
-    public void add(Person object){
+    public void add(T object){
         if (size == array.length) {
             grow();
         }
@@ -53,7 +53,7 @@ public class DynamicArray{
         }
     }
 
-    public Person get(int index){
+    public T get(int index){
         if (index >= 0 && index < size) {
             System.out.println("Indeks " + index + ": "+ array[index]);
             return array[index];
@@ -62,7 +62,7 @@ public class DynamicArray{
             return null;
         }
     }
-    public void set(int index, Person object){
+    public void set(int index, T object){
         if (index >= 0 && index < size) {
             array[index] = object;
             System.out.println("Indsat " + object + " på " + index );
@@ -72,7 +72,7 @@ public class DynamicArray{
     }
 
     private void grow(){
-        Person[] newArray = new Person[array.length + growSize];
+        T[] newArray = (T[])new Person[array.length + growSize];
 
         for (int i = 0; i < array.length; i++){
             newArray[i] = array[i];
@@ -86,7 +86,7 @@ public class DynamicArray{
 
     public void shrink(){
         int newSize = array.length - growSize;
-        Person[] newArray = new Person[newSize];
+        T[] newArray = (T[])new Person[newSize];
 
         for (int i = 0; i < newSize; i++) {
             newArray[i] = array[i];

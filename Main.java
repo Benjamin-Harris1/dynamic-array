@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public class Main {
     public static void main(String[] args){
         Person harry = new Person("Harry James Potter");
@@ -12,7 +14,11 @@ public class Main {
         Person sirius = new Person("Sirius Black");
         Person bella = new Person("Bellatrix Lestrange");
 
-        DynamicArray darr = new DynamicArray();
+        DynamicArray<Person> darr = new DynamicArray<Person>();
+        DynamicArray<LocalDate> datoer = new DynamicArray<LocalDate>();
+        LocalDate today = LocalDate.now();
+        datoer.add(today);
+        datoer.get(0);
 
         darr.add(hermione);
         darr.add(snape);
